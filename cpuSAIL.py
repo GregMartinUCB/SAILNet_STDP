@@ -19,7 +19,12 @@ def activities(X,Q,W,theta):
     Ys = np.zeros((batch_size,M))
     aas = np.zeros((batch_size,M))
     Y = np.zeros((batch_size,M))
-
+    
+    """    
+    aas determines who spikes. Subtracting aas.dot(W) creates inhibition based on the weight.
+    aas is either 1 or 0, either fired or not.
+    
+    """
     for tt in xrange(num_iterations):
         Ys = (1.-eta)*Ys+eta*(B-aas.dot(W))
         aas = np.zeros((batch_size,M))
